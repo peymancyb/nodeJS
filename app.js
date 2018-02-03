@@ -5,12 +5,20 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var lessMiddleware = require('less-middleware');
-
+var mongoose = require('mongoose');
+//======================================================
+//routers
 var index = require('./routes/index');
-var users = require('./routes/users');
+// var users = require('./routes/users');
 
 var app = express();
 
+//connecting to mongodb
+if(mongoose.connect("mongodb://127.0.0.1:27017")){
+  console.log("connected!");
+}else {
+  console.log("failed");
+}
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hjs');
